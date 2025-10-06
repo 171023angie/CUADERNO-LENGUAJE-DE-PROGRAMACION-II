@@ -4,5 +4,54 @@
 **Facultad:** Ingeniería Estadística e Informática  
 **Universidad:** Universidad Nacional del Altiplano – Puno  
 **Curso:** Lenguaje de Programación (Python)  
-**Docente:** *[Aquí puedes poner el nombre de tu profesor]*  
-## 📘 Semana 1 – Introducción a Python
+**Docente:** Leonel  
+## 📘TEMA 1 _ PROGRAMACION ORIENTADA A OBJETOS
+Es una paradigma de programacion que organiza el sofware entorno a objetos ,los cuales conbinan datos(atributos)y comportamiento(metodos)en una misma entidad.Estos objetos se basan en clases que funcionan como molde o plantillas que definen sus caracteristicas y acciones.
+## Diferencia entre programacion estructurada y P.O.O
+## 🧩 Comparación: Programación Estructurada vs Programación Orientada a Objetos
+
+| **Característica** | **Programación Estructurada** | **Programación Orientada a Objetos (POO)** |
+|---------------------|-------------------------------|---------------------------------------------|
+| **Paradigma** | Se basa en procedimientos y funciones que operan sobre datos. | Se basa en objetos que combinan datos y comportamiento. |
+| **Organización del Código** | El programa se divide en funciones o módulos. | El programa se organiza en **clases** y **objetos**. |
+| **Enfoque** | Orientado a **procesos**: la secuencia de instrucciones es lo principal. | Orientado a **entidades**: los objetos del mundo real son lo principal. |
+| **Datos** | Los datos son **globales o compartidos**, y pueden ser modificados por cualquier función. | Los datos (**atributos**) están **encapsulados** dentro de los objetos y solo son accesibles mediante sus métodos. |
+| **Reutilización** | **Baja:** se requiere repetir o copiar funciones. | **Alta:** gracias a la **herencia** y **polimorfismo**. |
+| **Mantenimiento** | **Difícil**, porque un cambio en los datos puede afectar muchas funciones. | **Más sencillo**, ya que los cambios se aíslan en las clases u objetos correspondientes. |
+
+## 🧩 ¿Qué es la Programación Orientada a Objetos?
+
+La **POO** es un paradigma de programación que organiza el código en **clases y objetos**.  
+- **Clase:** molde o plantilla que define las características y comportamientos de un tipo de objeto.  
+- **Objeto:** instancia concreta de una clase.  
+- **Atributo:** características o propiedades del objeto.  
+- **Método:** funciones que describen el comportamiento del objeto.
+## EN RESUMEN 
+-La paradigma estructurada organiza en funciones y pasos esenciales siendo mas adecuado para programas pequeños y sencillos.
+
+-La P.O.O organiza el software en clases y objetos,lo cual facilita modularidad , reutilizacion y escalavilidad ,siendo la mas usada en sistemas modernos.
+## 🌟 Ventajas de la Programación Orientada a Objetos (P.O.O.)
+
+| **Ventaja** | **Descripción** |
+|--------------|----------------|
+| **Modularidad** | El código se organiza en **clases y objetos**, lo que facilita la comprensión, depuración y mantenimiento del sistema. |
+| **Reutilización de Código** | Gracias a la **herencia** y al **polimorfismo**, se pueden crear nuevas clases a partir de otras sin repetir código. |
+| **Encapsulamiento** | Protege los datos internos de los objetos, permitiendo el acceso solo a través de métodos definidos, manteniendo la seguridad de la información. |
+| **Abstracción** | Permite representar entidades del mundo real como modelos computacionales, simplificando la complejidad. |
+| **Escalabilidad** | Adecuado para sistemas grandes y complejos, ya que permite dividir el trabajo en módulos independientes. |
+| **Mantenimiento más sencillo** | Los cambios se realizan en clases específicas sin afectar todo el sistema. |
+| **Flexibilidad y Extensibilidad** | Permite adaptar y ampliar sistemas de manera rápida y ordenada. |
+| **Productividad** | Facilita el trabajo en equipo: varios programadores pueden desarrollar distintas clases u objetos de forma independiente. |
+
+---
+
+## 💻 Aplicaciones de la Programación Orientada a Objetos
+
+La **P.O.O.** se aplica ampliamente en el desarrollo de software moderno, ya que permite construir **sistemas modulares, reutilizables y escalables**.  
+A continuación, algunos ejemplos destacados:
+
+- 🖥️ **1)Desarrollo de aplicaciones de escritorio:**  
+  Utilizada en programas como editores de texto, hojas de cálculo, o software de gestión, donde se representan **ventanas, menús, botones y acciones** como objetos.
+
+- 🌐 **2)Aplicaciones web y móviles:**  
+  Frameworks modernos aplican principios de programacion a objetos para manejar 
