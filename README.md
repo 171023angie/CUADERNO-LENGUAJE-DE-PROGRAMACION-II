@@ -938,39 +938,27 @@ Un método operativo “**hace algo**” — calcula, imprime, suma, resta, mues
 | `__add__` | `+` | Sumar o combinar objetos |
 
 ## 🧠 Estructura General
-
-```python
 class NombreClase:
     def __init__(self, atributos):
         self.atributo = atributos
 
     def metodo_operativo(self, parametros):
-        # Operación o acción concreta
         return resultado
+        
 🧮 Ejemplo 1: Clase Calculadora
 python
 Copiar código
 class Calculadora:
     def __init__(self):
         pass
-
-    # Método operativo que suma dos números
+ # Método operativo que suma dos números
     def sumar(self, a, b):
         return a + b
-
-    # Método operativo que multiplica dos números
+# Método operativo que multiplica dos números
     def multiplicar(self, a, b):
         return a * b
 
-
-# Uso de la clase
-calc = Calculadora()
-print(f"🧮 Suma: {calc.sumar(5, 3)}")
-print(f"✖️ Multiplicación: {calc.multiplicar(4, 6)}")
-✅ Descripción:
-Los métodos sumar() y multiplicar() operan directamente con los parámetros para devolver un resultado.
-
-📏 Ejemplo 2: Clase Rectángulo
+# #📏 Ejemplo 2: Clase Rectángulo
 python
 Copiar código
 class Rectangulo:
@@ -1001,13 +989,9 @@ class Banco:
     def __init__(self, titular, saldo):
         self.titular = titular
         self.saldo = saldo
-
-    # Método operativo: depositar dinero
     def depositar(self, monto):
         self.saldo += monto
         print(f"💰 Depósito exitoso. Nuevo saldo: {self.saldo}")
-
-    # Método operativo: retirar dinero
     def retirar(self, monto):
         if monto <= self.saldo:
             self.saldo -= monto
@@ -1075,8 +1059,6 @@ class Rectangulo:
     def __init__(self, base=0, altura=0):
         self.base = base
         self.altura = altura
-
-    # Método operativo con sobrecarga simulada
     def calcular_area(self, lado=None):
         if lado is not None:
             return lado * lado
@@ -1131,29 +1113,21 @@ Un **constructor** es un método especial que se ejecuta **automáticamente** al
 Se utiliza para **inicializar los atributos** del objeto.
 
 ### 🔹 Sintaxis:
-```python
 def __init__(self, ...):
-
- # Código de inicialización
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
         print(f"Se ha creado a {self.nombre}, de {self.edad} años.")
 
-# Crear objeto
-persona1 = Persona("Gleny", 20)
-
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
         print(f"Se ha creado a {self.nombre}, de {self.edad} años.")
-
-# Crear objeto
 persona1 = Persona("Gleny", 20)
 
-🧹 DESTRUCTOR
+### 🔹 DESTRUCTOR:
 
 El destructor es un método especial que se ejecuta automáticamente cuando un objeto está a punto de ser eliminado o ya no se usa más.
 Sirve para liberar recursos o mostrar mensajes antes de la eliminación.
@@ -1224,3 +1198,178 @@ Es un caso más fuerte que la agregación. También es una relación (todo-parte
 CARACTERÍSTICAS:
  * Relación fuerte de pertenencia.
  * Se crean y destruyen con el objeto contenedor.
+
+=================================================================
+## UNIDAD II ##
+=================================================================
+# 🧩 TEMA: Herencia en Programación Orientada a Objetos (P.O.O)
+
+## 📘 Herencia
+La **herencia** es un concepto fundamental en la Programación Orientada a Objetos (P.O.O) que permite crear nuevas clases a partir de clases existentes.  
+La clase nueva (llamada **clase derivada** o **subclase**) hereda atributos y métodos de la clase original (llamada **clase base** o **superclase**).
+👉 Esto facilita:
+- La reutilización de código.  
+- La organización jerárquica de las clases.  
+- La extensión del comportamiento sin necesidad de reescribir código.  
+
+## 🧠 Herencia Simple
+
+En la **herencia simple**, una clase derivada hereda de una única clase base.  
+Esto significa que la subclase solo tiene una superclase directa, lo que la convierte en el tipo de herencia más común y sencillo de implementar. 
+
+## 🧠 Herencia Multiple
+
+En la **herencia múltiple**, una clase puede heredar atributos y métodos de varias clases bases al mismo tiempo. Esto permite combinar funcionalidades de diferentes clases en una sola.
+
+
+## 🗂️ Ejemplo 
+    ┌────────────┐
+    │  Persona   │   ← Superclase
+    └─────┬──────┘
+          │
+┌─────────┴──────────┐
+│                    │
+┌──────────┐ ┌──────────┐
+│ Alumno   │ │ Profesor │
+└──────────┘ └──────────┘
+- **Persona** → Superclase  
+- **Alumno** → Subclase  
+- **Profesor** → Subclase
+
+
+# EJEMPLOS DE CODIGO #
+
+--**CLASS ANIMAL**--
+
+class Animal:
+    def hacerSonido(self):
+        print("Sonido genérico")
+
+
+class Perro(Animal):
+    def ladrar(self):
+        print("¡Guau!")
+perro = Perro()
+perro.hacerSonido()  # Método heredado de Animal
+perro.ladrar()       # Método propio de Perro
+
+
+--**CLASS ANIMAL.2** --
+
+class Animal: #clase base
+    def _init_(self, nombre):
+        self.nombre = nombre
+        
+    def hacerSonido(self):
+        pass
+    
+class Perro(Animal): #herencia derivada
+
+    def hacerSonido(self):
+        return "Guau!"
+class Gato(Animal): #herencia derivadda
+    def hacerSonido(self):
+        return "Miau!"
+perro =Perro("Rex")
+print(f"{perro.nombre} dice {perro.hacerSonido()}")
+gato =Gato("Iris")
+print(f"{gato.nombre} dice {gato.hacerSonido()}")
+
+
+--**CLASS FIGURA GEOMETRICA CIRCULO**--
+class FiguraGeometrica:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def area(self):
+        raise NotImplementedError("Subclases deben implementar este método")
+
+    def perimetro(self):
+        raise NotImplementedError("Subclases deben implementar este método")
+
+class Circulo(FiguraGeometrica):
+    def __init__(self, radio):
+        super().__init__("Circulo")
+        self.radio = radio
+
+    def area(self):
+        return 3.141592*(self.radio**2)
+
+    def perimetro(self):
+        return 2*3.141592*self.radio
+
+circulo = Circulo(5)
+print(f"Nombre : {circulo.nombre}")
+print(f"Area : {circulo.area()}")
+print(f"Perimetro : {circulo.perimetro()}")
+
+--**CLASS FIGURA GEOMETRICA RESCTANGULO**--
+class FiguraGeometrica:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def area(self):
+        raise NotImplementedError("Subclases deben implementar este método")
+
+    def perimetro(self):
+        raise NotImplementedError("Subclases deben implementar este método")
+
+class Rectangulo(FiguraGeometrica):
+    def __init__(self, base, altura):
+        super().__init__("Rectangulo")
+        self.base = base
+        self.altura = altura
+
+    def area(self):
+        # Fórmula del área: base * altura
+        return self.base * self.altura
+
+    def perimetro(self):
+        # Fórmula del perímetro: 2 * (base + altura)
+        return 2 * (self.base + self.altura)
+
+rectangulo = Rectangulo(10, 5) # Base = 10, Altura = 5
+print(f"Nombre : {rectangulo.nombre}")
+print(f"Area : {rectangulo.area()}")
+print(f"Perimetro : {rectangulo.perimetro()}")
+
+
+--**CLASS AVES SONIDO**--
+
+class Nadador: #clase base 1
+    def nadar(self):
+        print("Nadando en el agua")
+
+class Volador: #clase base 2
+    def volar(self):
+        print("volando por el aire")
+
+class Pato(Nadador,Volador): #clase derivada
+    def graznar(self):
+        print("¡Cuac!")
+
+pato = Pato()
+pato.nadar()
+pato.volar()
+pato.graznar()
+
+--**CLASS AVES(CISNE)**--
+
+class Nadador: # Clase base 1
+    def nadar(self):
+        print("El cisne se desliza elegantemente en el agua.")
+
+class Volador: # Clase base 2
+    def volar(self):
+        print("El cisne surca el cielo con majestuosidad.")
+
+class Cisne(Nadador, Volador): # Clase derivada (Herencia Múltiple)
+    def cantar(self):
+        print("¡Whoop!")
+
+cisne = Cisne()
+
+cisne.nadar()
+cisne.volar()
+cisne.cantar()
+
