@@ -1221,20 +1221,8 @@ Esto significa que la subclase solo tiene una superclase directa, lo que la conv
 
 En la **herencia múltiple**, una clase puede heredar atributos y métodos de varias clases bases al mismo tiempo. Esto permite combinar funcionalidades de diferentes clases en una sola.
 
+<img width="310" height="343" alt="image" src="https://github.com/user-attachments/assets/f79b20d7-a595-404c-84fd-c48b57773302" />
 
-## 🗂️ Ejemplo 
-    ┌────────────┐
-    │  Persona   │   ← Superclase
-    └─────┬──────┘
-          │
-┌─────────┴──────────┐
-│                    │
-┌──────────┐ ┌──────────┐
-│ Alumno   │ │ Profesor │
-└──────────┘ └──────────┘
-- **Persona** → Superclase  
-- **Alumno** → Subclase  
-- **Profesor** → Subclase
 
 
 # EJEMPLOS DE CODIGO #
@@ -1244,14 +1232,14 @@ En la **herencia múltiple**, una clase puede heredar atributos y métodos de va
 class Animal:
     def hacerSonido(self):
         print("Sonido genérico")
-
-
 class Perro(Animal):
     def ladrar(self):
         print("¡Guau!")
 perro = Perro()
 perro.hacerSonido()  # Método heredado de Animal
 perro.ladrar()       # Método propio de Perro
+
+<img width="472" height="330" alt="image" src="https://github.com/user-attachments/assets/98c14fcb-bcdf-4fc6-923c-7cfae797e4bf" />
 
 
 --**CLASS ANIMAL.2** --
@@ -1261,10 +1249,8 @@ class Animal: #clase base
         self.nombre = nombre
         
     def hacerSonido(self):
-        pass
-    
+        pass 
 class Perro(Animal): #herencia derivada
-
     def hacerSonido(self):
         return "Guau!"
 class Gato(Animal): #herencia derivadda
@@ -1275,63 +1261,56 @@ print(f"{perro.nombre} dice {perro.hacerSonido()}")
 gato =Gato("Iris")
 print(f"{gato.nombre} dice {gato.hacerSonido()}")
 
+<img width="467" height="452" alt="image" src="https://github.com/user-attachments/assets/22b51f1f-79d5-4435-851a-f012a4f5947e" />
 
 --**CLASS FIGURA GEOMETRICA CIRCULO**--
 class FiguraGeometrica:
     def __init__(self, nombre):
         self.nombre = nombre
-
     def area(self):
         raise NotImplementedError("Subclases deben implementar este método")
 
     def perimetro(self):
         raise NotImplementedError("Subclases deben implementar este método")
-
 class Circulo(FiguraGeometrica):
     def __init__(self, radio):
         super().__init__("Circulo")
         self.radio = radio
-
     def area(self):
         return 3.141592*(self.radio**2)
-
     def perimetro(self):
         return 2*3.141592*self.radio
-
 circulo = Circulo(5)
 print(f"Nombre : {circulo.nombre}")
 print(f"Area : {circulo.area()}")
 print(f"Perimetro : {circulo.perimetro()}")
+<img width="702" height="495" alt="image" src="https://github.com/user-attachments/assets/7b55da41-1005-43e7-95de-7ba21de1f27c" />
+
 
 --**CLASS FIGURA GEOMETRICA RESCTANGULO**--
 class FiguraGeometrica:
     def __init__(self, nombre):
         self.nombre = nombre
-
     def area(self):
         raise NotImplementedError("Subclases deben implementar este método")
-
     def perimetro(self):
         raise NotImplementedError("Subclases deben implementar este método")
-
 class Rectangulo(FiguraGeometrica):
     def __init__(self, base, altura):
         super().__init__("Rectangulo")
         self.base = base
         self.altura = altura
-
     def area(self):
         # Fórmula del área: base * altura
         return self.base * self.altura
-
     def perimetro(self):
         # Fórmula del perímetro: 2 * (base + altura)
         return 2 * (self.base + self.altura)
-
 rectangulo = Rectangulo(10, 5) # Base = 10, Altura = 5
 print(f"Nombre : {rectangulo.nombre}")
 print(f"Area : {rectangulo.area()}")
 print(f"Perimetro : {rectangulo.perimetro()}")
+<img width="737" height="565" alt="image" src="https://github.com/user-attachments/assets/3e7588da-e08c-49ed-bda3-f298a27e5fbb" />
 
 
 --**CLASS AVES SONIDO**--
@@ -1339,19 +1318,17 @@ print(f"Perimetro : {rectangulo.perimetro()}")
 class Nadador: #clase base 1
     def nadar(self):
         print("Nadando en el agua")
-
 class Volador: #clase base 2
     def volar(self):
         print("volando por el aire")
-
 class Pato(Nadador,Volador): #clase derivada
     def graznar(self):
         print("¡Cuac!")
-
 pato = Pato()
 pato.nadar()
 pato.volar()
 pato.graznar()
+<img width="442" height="325" alt="image" src="https://github.com/user-attachments/assets/70560ec1-77ab-460b-a9a3-f12372c94fe8" />
 
 --**CLASS AVES(CISNE)**--
 
@@ -1361,22 +1338,285 @@ cisne.cantar()
 class Nadador:  # Clase base 1
     def nadar(self):
         print("El cisne se desliza elegantemente en el agua.")
-
-
 class Volador:  # Clase base 2
     def volar(self):
         print("El cisne surca el cielo con majestuosidad.")
-
-
 class Cisne(Nadador, Volador):  # Clase derivada (Herencia múltiple)
     def cantar(self):
         print("¡Whoop!")
-
-
 # Crear objeto de la clase Cisne
 cisne = Cisne()
-
 # Llamar a los métodos heredados y propios
 cisne.nadar()
 cisne.volar()
 cisne.cantar()
+<img width="582" height="447" alt="image" src="https://github.com/user-attachments/assets/ba375cbe-ddc6-4b6b-9dbf-312ff463374a" />
+
+
+**EJEMPLO :HERENCIA MULTIPLE**
+          IMC=PESO /(ALTURA)^2
+    CLASE:PESO->clase base 1
+    CLASE:ALTURA->clase base 2
+    CLASE:IMC->clase derivada 
+
+    
+class Peso:
+    def _init_(self,peso_kg):
+        self.peso_kg =peso_kg
+class Altura:
+    def _init_(self,altura_m):
+        self.altura_m = altura_m
+
+class IMC(Peso,Altura):
+    def _init_(self,peso_kg,altura_m):
+        Peso._init_(self,peso_kg)
+        Altura._init_(self,altura_m)    
+    def calcular_imc(self):
+        if self.altura_m< 0:
+            raise ValorError("La altura debe ser mayor que 0")
+        return self.peso_kg/(self.altura_m**2)
+    def categoria_imc(self):
+        imc = self.calcular_imc()
+        if imc < 18.5:
+            return "Bajo peso"
+        elif 18.5 <= imc <25:
+            return "Normal"
+        elif 25 <= imc <30:
+            return "Sobrepeso"
+        else:
+            return "Obesidad"
+    def mostrar_resultado(self):
+        imc = self.calcular_imc()
+        categoria = self.categoria_imc()
+        return f"IMC: {imc:2f} CATEGRIA: {categoria}"
+def leer_float(mensaje):
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor <=0:
+                print("Por favor, ingrese un valor poositivo")
+                continue
+            return valor
+        except ValorError:
+            print("Entrada invalida, ingrese un numero valido")
+peso = leer_float("Ingrese tu peso en kilometros: ")
+altura = leer_float("Ingrese tu altura en metros: ")
+persona = IMC(peso_kg = peso,altura_m = altura)
+print(persona.mostrar_resultado())
+
+**EJEMPLO HERENCIA MULTIPLE(CLASS PITAGORAS)**
+            <img width="175" height="41" alt="image" src="https://github.com/user-attachments/assets/a9a510d8-0f68-4f5d-a542-6a864be97fcd" />
+            <img width="172" height="52" alt="image" src="https://github.com/user-attachments/assets/b38520de-410a-4672-ae0d-bfba7d091184" />
+
+CLASE:CATETO_a
+CLASE:CATETO_B
+CLASE HIPOTENUSA()
+
+
+import math
+# Clase base 1
+class CatetoA:
+    def __init__(self, cateto_a):
+        self.cateto_a = cateto_a
+# Clase base 2
+class CatetoB:
+    def __init__(self, cateto_b):
+        self.cateto_b = cateto_b
+# Clase derivada
+class TrianguloRectangulo(CatetoA, CatetoB):
+    def __init__(self, cateto_a, cateto_b):
+        CatetoA.__init__(self, cateto_a)
+        CatetoB.__init__(self, cateto_b)
+    def calcular_hipotenusa(self):
+        if self.cateto_a <= 0 or self.cateto_b <= 0:
+            raise ValueError("Los catetos deben ser mayores que 0")
+        return math.sqrt(self.cateto_a ** 2 + self.cateto_b ** 2)
+    def mostrar_resultado(self):
+        hipotenusa = self.calcular_hipotenusa()
+        return f"Cateto A: {self.cateto_a} | Cateto B: {self.cateto_b} | Hipotenusa: {hipotenusa:.2f}"
+# Función para validar entrada de números positivos
+def leer_float(mensaje):
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor <= 0:
+                print("Por favor, ingrese un valor positivo.")
+                continue
+            return valor
+        except ValueError:
+            print("Entrada inválida. Ingrese un número válido.")
+# Programa principal
+cateto_a = leer_float("Ingrese la longitud del cateto A: ")
+cateto_b = leer_float("Ingrese la longitud del cateto B: ")
+triangulo = TrianguloRectangulo(cateto_a, cateto_b)
+print(triangulo.mostrar_resultado())
+
+
+**EJEMPLO HERENCIA MULTIPLE(PERSONA,TRABAJO,ESTUDIO)**
+       Clases: Persona, Trabajador, Estudiante
+       Clase derivada: PersonaMultirol
+
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    def presentarse(self):
+        print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
+class Trabajador:
+    def __init__(self, profesion, salario):
+        self.profesion = profesion
+        self.salario = salario
+    def trabajar(self):
+        print(f"Estoy trabajando como {self.profesion} y gano {self.salario} al mes.")
+class Estudiante:
+    def __init__(self, carrera, universidad):
+        self.carrera = carrera
+        self.universidad = universidad
+
+    def estudiar(self):
+        print(f"Estudio {self.carrera} en la Universidad {self.universidad}.")
+class PersonaMultirol(Persona, Trabajador, Estudiante):
+    def __init__(self, nombre, edad, profesion, salario, carrera, universidad):
+        Persona.__init__(self, nombre, edad)
+        Trabajador.__init__(self, profesion, salario)
+        Estudiante.__init__(self, carrera, universidad)
+
+    def mostrar_informacion(self):
+        print("========= INFORMACIÓN DE LA PERSONA =========")
+        self.presentarse()
+        self.trabajar()
+        self.estudiar()
+def main():
+    persona1 = PersonaMultirol(
+        nombre="Juanita",
+        edad=25,
+        profesion="Desarrolladora de software",
+        salario=2500,
+        carrera="Ingeniería Estadística e Informática",
+        universidad="Universidad Nacional del Altiplano"
+    )
+    persona1.mostrar_informacion()
+if __name__ == "__main__":
+    main()
+
+
+#  ------Herencia Múltiple con Interfaz Tkinter-------------
+
+import tkinter as tk
+from tkinter import ttk, messagebox
+# ==== CLASES BASE ====
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+    def presentarse(self):
+        return f"Hola, soy {self.nombre} y tengo {self.edad} años."
+class Trabajador:
+    def __init__(self, profesion, salario):
+        self.profesion = profesion
+        self.salario = salario
+    def trabajar(self):
+        return f"Trabajo como {self.profesion} y gano {self.salario} soles al mes."
+class Estudiante:
+    def __init__(self, carrera, universidad):
+        self.carrera = carrera
+        self.universidad = universidad
+    def estudiar(self):
+        return f"Estudio {self.carrera} en la Universidad {self.universidad}."
+# ==== CLASE DERIVADA (HERENCIA MÚLTIPLE) ====
+class PersonaMultirol(Persona, Trabajador, Estudiante):
+    def __init__(self, nombre, edad, profesion, salario, carrera, universidad):
+        Persona.__init__(self, nombre, edad)
+        Trabajador.__init__(self, profesion, salario)
+        Estudiante.__init__(self, carrera, universidad)
+
+    def mostrar_informacion(self):
+        info = (
+            f"========= INFORMACIÓN DE {self.nombre.upper()} =========\n"
+            f"{self.presentarse()}\n"
+            f"{self.trabajar()}\n"
+            f"{self.estudiar()}\n"
+        )
+        return info
+# ==== PERSONAS PREDEFINIDAS ====
+persona1 = PersonaMultirol(
+    "Juanita", 25, "Desarrolladora de software", 2500,
+    "Ingeniería Estadística e Informática", "Universidad Nacional del Altiplano"
+)
+persona2 = PersonaMultirol(
+    "Carlos", 30, "Analista de Datos", 3200,
+    "Ciencia de la Computación", "Universidad Nacional Mayor de San Marcos"
+)
+persona3 = PersonaMultirol(
+    "Gleny", 22, "Asistente de sistemas", 1800,
+    "Ingeniería Informática", "Universidad Nacional del Altiplano"
+)
+# ==== FUNCIONES DE INTERFAZ ====
+def mostrar_datos(persona):
+    """Muestra la información de una persona en el cuadro de texto."""
+    text_resultado.delete("1.0", tk.END)
+    text_resultado.insert(tk.END, persona.mostrar_informacion())
+def agregar_persona():
+    """Crea una nueva persona a partir de los datos ingresados en el formulario."""
+    nombre = entry_nombre.get()
+    edad = entry_edad.get()
+    profesion = entry_profesion.get()
+    salario = entry_salario.get()
+    carrera = entry_carrera.get()
+    universidad = entry_universidad.get()
+    # Validación de datos
+    if not all([nombre, edad, profesion, salario, carrera, universidad]):
+        messagebox.showwarning("Error", "Por favor, complete todos los campos.")
+        return
+    try:
+        edad = int(edad)
+        salario = float(salario)
+    except ValueError:
+        messagebox.showerror("Error", "Edad y salario deben ser numéricos.")
+        return
+    nueva_persona = PersonaMultirol(nombre, edad, profesion, salario, carrera, universidad)
+    mostrar_datos(nueva_persona)
+    messagebox.showinfo("Éxito", f"Se mostró la información de {nombre}.")
+# ==== VENTANA PRINCIPAL ====
+ventana = tk.Tk()
+ventana.title("🧩 Herencia Múltiple - Tres Personas + Ingreso")
+ventana.geometry("620x650")
+ventana.resizable(False, False)
+# ==== TÍTULO ====
+titulo = ttk.Label(
+    ventana,
+    text="👩‍💻 HERENCIA MÚLTIPLE EN PYTHON (Persona - Trabajador - Estudiante)",
+    font=("Arial", 11, "bold")
+)
+titulo.pack(pady=10)
+# ==== BOTONES DE PERSONAS PREDEFINIDAS ====
+frame_botones = ttk.Frame(ventana)
+frame_botones.pack(pady=10)
+ttk.Button(frame_botones, text="Mostrar Juanita 👩‍💻", command=lambda: mostrar_datos(persona1)).grid(row=0, column=0, padx=10)
+ttk.Button(frame_botones, text="Mostrar Carlos 👨‍💼", command=lambda: mostrar_datos(persona2)).grid(row=0, column=1, padx=10)
+ttk.Button(frame_botones, text="Mostrar Gleny 🧍‍♀️", command=lambda: mostrar_datos(persona3)).grid(row=0, column=2, padx=10)
+# ==== CUADRO DE RESULTADOS ====
+text_resultado = tk.Text(ventana, width=70, height=12, wrap="word", font=("Consolas", 10))
+text_resultado.pack(pady=15)
+# ==== SECCIÓN PARA INGRESAR NUEVA PERSONA ====
+ttk.Label(ventana, text="🧠 Ingresar nueva persona", font=("Arial", 10, "bold")).pack()
+frame_form = ttk.Frame(ventana)
+frame_form.pack(pady=10)
+labels = ["Nombre:", "Edad:", "Profesión:", "Salario:", "Carrera:", "Universidad:"]
+entries = []
+for i, texto in enumerate(labels):
+    ttk.Label(frame_form, text=texto).grid(row=i, column=0, padx=5, pady=4, sticky="e")
+    entrada = ttk.Entry(frame_form, width=40)
+    entrada.grid(row=i, column=1, padx=5, pady=4)
+    entries.append(entrada)
+entry_nombre, entry_edad, entry_profesion, entry_salario, entry_carrera, entry_universidad = entries
+ttk.Button(ventana, text="📋 Mostrar Nueva Persona", command=agregar_persona).pack(pady=10)
+# ==== INSTRUCCIÓN FINAL ====
+ttk.Label(ventana, text="Seleccione una persona o ingrese una nueva para ver su información.").pack()
+# ==== EJECUTAR APLICACIÓN ====
+ventana.mainloop()
+
+<img width="767" height="848" alt="image" src="https://github.com/user-attachments/assets/f1ff8c16-12d3-4dec-9429-046e6f7df812" />
+
+
+
