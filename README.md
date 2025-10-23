@@ -1355,21 +1355,28 @@ pato.graznar()
 
 --**CLASS AVES(CISNE)**--
 
-class Nadador: # Clase base 1
-    def nadar(self):
-        print("El cisne se desliza elegantemente en el agua.")
-
-class Volador: # Clase base 2
-    def volar(self):
-        print("El cisne surca el cielo con majestuosidad.")
-
-class Cisne(Nadador, Volador): # Clase derivada (Herencia Múltiple)
-    def cantar(self):
-        print("¡Whoop!")
-
-cisne = Cisne()
-
 cisne.nadar()
 cisne.volar()
 cisne.cantar()
+class Nadador:  # Clase base 1
+    def nadar(self):
+        print("El cisne se desliza elegantemente en el agua.")
 
+
+class Volador:  # Clase base 2
+    def volar(self):
+        print("El cisne surca el cielo con majestuosidad.")
+
+
+class Cisne(Nadador, Volador):  # Clase derivada (Herencia múltiple)
+    def cantar(self):
+        print("¡Whoop!")
+
+
+# Crear objeto de la clase Cisne
+cisne = Cisne()
+
+# Llamar a los métodos heredados y propios
+cisne.nadar()
+cisne.volar()
+cisne.cantar()
