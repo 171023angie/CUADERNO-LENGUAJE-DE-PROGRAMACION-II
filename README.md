@@ -1618,5 +1618,133 @@ ventana.mainloop()
 
 <img width="767" height="848" alt="image" src="https://github.com/user-attachments/assets/f1ff8c16-12d3-4dec-9429-046e6f7df812" />
 
+**DIAGRAMAS OPENGL**
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    glClearColor(0.1, 0.1, 0.1, 1.0)
+    glPointSize(5)
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)
+
+def dibujar_triangulo():
+    glClear(GL_COLOR_BUFFER_BIT)
+    glColor3f(1.0, 1.0, 0.0)
+    glBegin(GL_POINTS)
+    glVertex2f(0.0, 0.5)
+    glVertex2f(-0.5, -0.5)
+    glVertex2f(0.5, -0.5)
+    glEnd()
+    glFlush()
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(600, 600)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"Triangulo de puntos en OpenGL")
+    inicializar()
+    glutDisplayFunc(dibujar_triangulo)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
+<img width="747" height="781" alt="image" src="https://github.com/user-attachments/assets/4e65399c-7f68-47b2-af1e-14461bfe774e" />
+
+----------EJEMPLO 2--------------
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    """Configura el entorno OpenGL"""
+    glClearColor(0.1, 0.1, 0.1, 1.0)  # Fondo gris oscuro
+    glPointSize(5)                    # Tamaño de los puntos (aumentado para mejor visibilidad)
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)  # Vista ortográfica 2D
+
+def dibujar_triangulo():
+    """Dibuja 3 puntos formando un triángulo"""
+    glClear(GL_COLOR_BUFFER_BIT)
+
+    glColor3f(1.0, 0.0, 0.0)  # Color amarillo
+    glBegin(GL_QUADS)
+
+    # Tres vértices del triángulo
+    glVertex2f(-0.5, 0.5)    # Vértice superior
+    glVertex2f(-0.5, -0.5)  # Vértice inferior izquierdo
+    glVertex2f(0.5, -0.5)
+    glVertex2f(0.5, 0.5)# Vértice inferior derecho
+
+    glEnd()
+    glFlush()       #obliga para que todo funcione
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(600, 600)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"Triangulo de puntos en OpenGL")
+    inicializar()
+    glutDisplayFunc(dibujar_triangulo)
+    glutMainLoop()
+
+if __name__ == "__main":  # CORRECCIÓN: __name en lugar de name
+    main()
+<img width="748" height="775" alt="image" src="https://github.com/user-attachments/assets/47c8ea39-f104-47c6-962d-8d45bb4f9174" />
+
+--------------EJEMPLO 3-------------
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    glClearColor(0.0, 0.0, 0.0, 1.0)  # Fondo negro
+    glColor3f(0.0, 1.0, 0.0)          # Letras verdes
+    glLineWidth(3)                    # Grosor de línea
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)
+
+def dibujar_UNA():
+    glClear(GL_COLOR_BUFFER_BIT)
+    glBegin(GL_LINES)
+
+    # Letra U
+    glVertex2f(-0.8,  0.5); glVertex2f(-0.8, -0.5)
+    glVertex2f(-0.8, -0.5); glVertex2f(-0.6, -0.5)
+    glVertex2f(-0.6, -0.5); glVertex2f(-0.6,  0.5)
+
+    # Letra N
+    glVertex2f(-0.5, -0.5); glVertex2f(-0.5,  0.5)
+    glVertex2f(-0.5,  0.5); glVertex2f(-0.3, -0.5)
+    glVertex2f(-0.3, -0.5); glVertex2f(-0.3,  0.5)
+
+    # Letra A
+    glVertex2f(-0.1, -0.5); glVertex2f(0.0,  0.5)
+    glVertex2f(0.0,  0.5);  glVertex2f(0.1, -0.5)
+    glVertex2f(-0.05, 0.0); glVertex2f(0.05, 0.0)
+
+    glEnd()
+    glFlush()
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(600, 600)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"UNA en OpenGL (coordenadas)")
+    inicializar()
+    glutDisplayFunc(dibujar_UNA)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
+<img width="748" height="793" alt="image" src="https://github.com/user-attachments/assets/fc05743a-2b85-4718-a417-0f3e1409755e" />
+
 
 
