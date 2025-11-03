@@ -1747,4 +1747,426 @@ if __name__ == "__main__":
 <img width="748" height="793" alt="image" src="https://github.com/user-attachments/assets/fc05743a-2b85-4718-a417-0f3e1409755e" />
 
 
+**TRABAJO DE LOBO**
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    """Configura el entorno OpenGL"""
+    glClearColor(1.0, 1.0, 1.0, 1.0)  # Fondo blanco
+    glPointSize(7)
+    glLineWidth(2.5)
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-1.0, 1.0, -1.15, 1.15, -1.0, 1.0)
+
+# --- Coordenadas de los ojos (más grandes) ---
+left_eye = [(-0.40, -0.05), (-0.27, 0.06), (-0.15, -0.08)]
+left_eye_inner_lines = [(-0.40, -0.05), (-0.30, -0.02), (-0.23, -0.05), (-0.27, 0.06)]
+
+right_eye = [(0.40, -0.05), (0.27, 0.06), (0.15, -0.08)]
+right_eye_inner_lines = [(0.40, -0.05), (0.30, -0.02), (0.23, -0.05), (0.27, 0.06)]
+
+def dibujar_zorro():
+    glClear(GL_COLOR_BUFFER_BIT)
+
+    # --- CONTORNO PRINCIPAL ---
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINE_STRIP)
+    glVertex2f(-0.7, 0.1)
+    glVertex2f(-0.8, -0.2)
+    glVertex2f(-0.9, -0.6)
+    glVertex2f(-0.8, -0.7)
+    glVertex2f(-0.7, -0.6)
+    glVertex2f(-0.4, -0.9)
+    glVertex2f(-0.1, -1.0)
+    glVertex2f(0.1, -1.0)
+    glVertex2f(0.4, -0.9)
+    glVertex2f(0.7, -0.6)
+    glVertex2f(0.8, -0.7)
+    glVertex2f(0.9, -0.7)
+    glVertex2f(0.8, -0.3)
+    glVertex2f(0.7, 0.1)
+    glVertex2f(0.3, 0.4)
+    glVertex2f(0.0, 0.1)
+    glVertex2f(-0.3, 0.4)
+    glVertex2f(-0.7, 0.1)
+    glVertex2f(-0.8, 0.4)
+    glVertex2f(-0.9, 0.7)
+    glVertex2f(-0.8, 1.0)
+    glVertex2f(-0.7, 1.0)
+    glVertex2f(-0.5, 0.9)
+    glVertex2f(-0.3, 0.7)
+    glVertex2f(-0.2, 0.6)
+    glVertex2f(0.0, 0.7)
+    glVertex2f(0.2, 0.6)
+    glVertex2f(0.3, 0.7)
+    glVertex2f(0.5, 0.9)
+    glVertex2f(0.7, 1.0)
+    glVertex2f(0.8, 1.0)
+    glVertex2f(0.9, 0.7)
+    glVertex2f(0.7, 0.1)
+    glEnd()
+
+    # --- HOCICO ---
+    glColor3f(0.85, 0.85, 0.85)
+    glBegin(GL_POLYGON)
+    glVertex2f(-0.1, -0.8)
+    glVertex2f(-0.2, -0.6)
+    glVertex2f(-0.1, -0.5)
+    glVertex2f(0.1, -0.5)
+    glVertex2f(0.2, -0.6)
+    glVertex2f(0.1, -0.8)
+    glEnd()
+
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINE_LOOP)
+    glVertex2f(-0.1, -0.8)
+    glVertex2f(-0.2, -0.6)
+    glVertex2f(-0.1, -0.5)
+    glVertex2f(0.1, -0.5)
+    glVertex2f(0.2, -0.6)
+    glVertex2f(0.1, -0.8)
+    glEnd()
+
+    # --- OREJAS ---
+    glColor3f(0.85, 0.85, 0.85)
+    glBegin(GL_POLYGON)
+    glVertex2f(-0.4, 0.6)
+    glVertex2f(-0.7, 0.9)
+    glVertex2f(-0.7, 0.4)
+    glVertex2f(-0.6, 0.3)
+    glVertex2f(-0.4, 0.5)
+    glEnd()
+
+    glBegin(GL_POLYGON)
+    glVertex2f(0.4, 0.6)
+    glVertex2f(0.7, 0.9)
+    glVertex2f(0.7, 0.4)
+    glVertex2f(0.6, 0.3)
+    glVertex2f(0.4, 0.5)
+    glEnd()
+
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINE_LOOP)
+    glVertex2f(-0.4, 0.6)
+    glVertex2f(-0.7, 0.9)
+    glVertex2f(-0.7, 0.4)
+    glVertex2f(-0.6, 0.3)
+    glVertex2f(-0.4, 0.5)
+    glEnd()
+
+    glBegin(GL_LINE_LOOP)
+    glVertex2f(0.4, 0.6)
+    glVertex2f(0.7, 0.9)
+    glVertex2f(0.7, 0.4)
+    glVertex2f(0.6, 0.3)
+    glVertex2f(0.4, 0.5)
+    glEnd()
+
+    # --- OJOS más grandes ---
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINE_LOOP)
+    for x, y in left_eye:
+        glVertex2f(x, y)
+    glEnd()
+
+    glBegin(GL_LINES)
+    for i in range(len(left_eye_inner_lines) - 1):
+        glVertex2f(*left_eye_inner_lines[i])
+        glVertex2f(*left_eye_inner_lines[i + 1])
+    glEnd()
+
+    glBegin(GL_LINE_LOOP)
+    for x, y in right_eye:
+        glVertex2f(x, y)
+    glEnd()
+
+    glBegin(GL_LINES)
+    for i in range(len(right_eye_inner_lines) - 1):
+        glVertex2f(*right_eye_inner_lines[i])
+        glVertex2f(*right_eye_inner_lines[i + 1])
+    glEnd()
+
+    glFlush()
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(600, 700)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"Zorro con ojos grandes")
+    inicializar()
+    glutDisplayFunc(dibujar_zorro)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
+    <img width="750" height="910" alt="image" src="https://github.com/user-attachments/assets/cd8fa32e-a782-40af-9b85-4bffc61faedb" />
+
+
+**EJERCICIO Y=X^2**
+ from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    """Configura el entorno OpenGL"""
+    glClearColor(1.0, 1.0, 1.0, 1.0)  # Fondo blanco
+    glPointSize(6.0)                  # Tamaño de los puntos
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-2.5, 2.5, -0.5, 5.5, -1.0, 1.0)  # Rango visible (x,y)
+
+def texto(x, y, texto):
+    """Dibuja texto en pantalla"""
+    glRasterPos2f(x, y)
+    for ch in texto:
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(ch))
+
+def dibujar_funcion():
+    glClear(GL_COLOR_BUFFER_BIT)
+
+    # ============================
+    # Ejes X y Y
+    # ============================
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex2f(-2.5, 0.0)
+    glVertex2f(2.5, 0.0)   # Eje X
+    glVertex2f(0.0, -0.5)
+    glVertex2f(0.0, 5.5)   # Eje Y
+    glEnd()
+
+    # --- Marcas en el eje X ---
+    for i in range(-2, 3):
+        glBegin(GL_LINES)
+        glVertex2f(i, -0.05)
+        glVertex2f(i, 0.05)
+        glEnd()
+        if i != 0:
+            texto(i - 0.05, -0.25, str(i))
+
+    # --- Marcas en el eje Y ---
+    for j in range(0, 6):
+        glBegin(GL_LINES)
+        glVertex2f(-0.05, j)
+        glVertex2f(0.05, j)
+        glEnd()
+        if j != 0:
+            texto(0.1, j - 0.05, str(j))
+
+    # ============================
+    # Función y = x²
+    # ============================
+
+    # Línea azul que une los puntos
+    glColor3f(0.0, 0.0, 1.0)
+    glLineWidth(2.0)
+    glBegin(GL_LINE_STRIP)
+    x = -2.0
+    while x <= 2.0:
+        y = x * x
+        glVertex2f(x, y)
+        x += 0.05
+    glEnd()
+
+    # Puntos rojos y coordenadas
+    glColor3f(1.0, 0.0, 0.0)
+    glBegin(GL_POINTS)
+    x = -2.0
+    while x <= 2.0:
+        y = round(x * x, 2)
+        glVertex2f(x, y)
+        x += 0.5
+    glEnd()
+
+    # Mostrar coordenadas (x, y)
+    x = -2.0
+    while x <= 2.0:
+        y = round(x * x, 2)
+        texto(x + 0.05, y + 0.1, f"({x:.1f},{y:.1f})")
+        x += 0.5
+
+    # Etiquetas
+    glColor3f(0.0, 0.0, 0.0)
+    texto(2.1, -0.3, "X")
+    texto(-0.2, 5.2, "Y")
+    texto(0.5, 4.8, "y = x²")
+
+    glFlush()
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(700, 700)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"Grafico de y = x^2 con coordenadas")
+    inicializar()
+    glutDisplayFunc(dibujar_funcion)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
+<img width="873" height="881" alt="image" src="https://github.com/user-attachments/assets/a7245d67-6345-4bd9-b941-b0422f88102e" />
+
+**EJERCICIO DE Y=X^3**
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+def inicializar():
+    """Configura el entorno OpenGL"""
+    glClearColor(1.0, 1.0, 1.0, 1.0)  # Fondo blanco
+    glPointSize(6.0)                  # Tamaño de los puntos
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(-2.5, 2.5, -10.0, 10.0, -1.0, 1.0)  # Rango visible (x,y)
+
+def texto(x, y, texto):
+    """Dibuja texto en pantalla"""
+    glRasterPos2f(x, y)
+    for ch in texto:
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(ch))
+
+def dibujar_funcion():
+    glClear(GL_COLOR_BUFFER_BIT)
+
+    # ============================
+    # Ejes X y Y
+    # ============================
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex2f(-2.5, 0.0)
+    glVertex2f(2.5, 0.0)   # Eje X
+    glVertex2f(0.0, -10.0)
+    glVertex2f(0.0, 10.0)  # Eje Y
+    glEnd()
+
+    # --- Marcas en el eje X ---
+    for i in range(-2, 3):
+        glBegin(GL_LINES)
+        glVertex2f(i, -0.3)
+        glVertex2f(i, 0.3)
+        glEnd()
+        if i != 0:
+            texto(i - 0.1, -1.0, str(i))
+
+    # --- Marcas en el eje Y ---
+    for j in range(-9, 10, 3):
+        glBegin(GL_LINES)
+        glVertex2f(-0.1, j)
+        glVertex2f(0.1, j)
+        glEnd()
+        if j != 0:
+            texto(0.2, j - 0.3, str(j))
+
+    # ============================
+    # Función y = x³
+    # ============================
+
+    # Línea azul continua
+    glColor3f(0.0, 0.0, 1.0)
+    glLineWidth(2.0)
+    glBegin(GL_LINE_STRIP)
+    x = -2.0
+    while x <= 2.0:
+        y = x ** 3
+        glVertex2f(x, y)
+        x += 0.05
+    glEnd()
+
+    # Puntos rojos
+    glColor3f(1.0, 0.0, 0.0)
+    glBegin(GL_POINTS)
+    x = -2.0
+    while x <= 2.0:
+        y = round(x ** 3, 2)
+        glVertex2f(x, y)
+        x += 0.5
+    glEnd()
+
+    # Coordenadas (x, y)
+    x = -2.0
+    while x <= 2.0:
+        y = round(x ** 3, 2)
+        texto(x + 0.05, y + 0.4, f"({x:.1f},{y:.1f})")
+        x += 0.5
+
+    # Etiquetas
+    glColor3f(0.0, 0.0, 0.0)
+    texto(2.1, -1.5, "X")
+    texto(-0.2, 9.5, "Y")
+    texto(0.7, 8.0, "y = x³")
+
+    glFlush()
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(700, 700)
+    glutInitWindowPosition(100, 100)
+    glutCreateWindow(b"Grafico de y = x^3 con coordenadas")
+    inicializar()
+    glutDisplayFunc(dibujar_funcion)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
+<img width="875" height="901" alt="image" src="https://github.com/user-attachments/assets/dfb44f5e-b9c8-434d-af97-d12530e273cc" />
+
+**EJERCICIO DE TRIANGULO**
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+import numpy as np
+
+angulo = 0.0  # Ángulo de rotación inicial
+
+def init():
+    glClearColor(0.0, 0.0, 0.0, 1.0)  # Fondo negro
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    gluOrtho2D(-1.5, 1.5, -1.5, 1.5)  # Coordenadas 2D
+    glMatrixMode(GL_MODELVIEW)
+
+def display():
+    global angulo
+    glClear(GL_COLOR_BUFFER_BIT)
+    glLoadIdentity()
+
+    # Aplicar rotación
+    glRotatef(angulo, 0.0, 0.0, 1.0)
+
+    # Dibujar un triángulo
+    glColor3f(1.0, 0.0, 0.0)  # Rojo
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.0, 0.5)
+    glVertex2f(-0.5, -0.5)
+    glVertex2f(0.5, -0.5)
+    glEnd()
+
+    glFlush()
+
+def specialKeys(key, x, y):
+    global angulo
+    if key == GLUT_KEY_LEFT:   # Flecha izquierda
+        angulo += 2
+    elif key == GLUT_KEY_RIGHT:  # Flecha derecha
+        angulo -= 2
+    glutPostRedisplay()
+# 
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(600, 600)
+    glutCreateWindow(b"Transformacion Geometrica - Rotacion")
+    init()
+    glutDisplayFunc(display)
+    glutSpecialFunc(specialKeys)
+    glutMainLoop()
+
+main()
+<img width="750" height="787" alt="image" src="https://github.com/user-attachments/assets/ada2682e-15b3-4128-8f22-1392bb27aff6" />
 
