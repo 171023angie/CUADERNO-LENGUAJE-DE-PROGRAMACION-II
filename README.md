@@ -1199,8 +1199,23 @@ CARACTERÍSTICAS:
  * Relación fuerte de pertenencia.
  * Se crean y destruyen con el objeto contenedor.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =================================================================
-## UNIDAD II ##
+    ## UNIDAD II ##
 =================================================================
 # 🧩 TEMA: Herencia en Programación Orientada a Objetos (P.O.O)
 
@@ -2169,4 +2184,210 @@ def main():
 
 main()
 <img width="750" height="787" alt="image" src="https://github.com/user-attachments/assets/ada2682e-15b3-4128-8f22-1392bb27aff6" />
+**EXCEPCIONES EN PYTHON**
+
+EJEMPLO 
+-import math
+
+def calcular_hipotenusa(cateto_a, cateto_b):
+    # Fórmula correcta: h = sqrt(a^2 + b^2)
+    return math.sqrt(cateto_a**2 + cateto_b**2)
+
+def main():
+    try:
+        a = float(input("Ingrese el valor de A: "))
+        b = float(input("Ingrese el valor de B: "))
+        
+        if a <= 0 or b <= 0:
+            raise ValueError("Los catetos deben ser números positivos")
+        
+        hipotenusa = calcular_hipotenusa(a, b)
+        
+        print(f"La hipotenusa es: {hipotenusa:.2f}")
+    
+    except ValueError as ve:
+        print("Error:", ve)
+    
+    except Exception as e:
+        print("Ocurrió un error inesperado:", e)
+
+if __name__ == "__main__":
+    main()
+    
+EJEMPLO
+-import tkinter as tk
+from tkinter import messagebox
+import math
+
+def calcular():
+    try:
+        a = float(entry_a.get())
+        b = float(entry_b.get())
+
+        if a <= 0 or b <= 0:
+            raise ValueError("Los catetos deben ser números positivos")
+
+        hipotenusa = math.sqrt(a**2 + b**2)
+        label_resultado.config(text=f"Hipotenusa: {hipotenusa:.2f}")
+
+    except ValueError as ve:
+        messagebox.showerror("Error", str(ve))
+    except Exception as e:
+        messagebox.showerror("Error inesperado", str(e))
+
+# Ventana principal
+ventana = tk.Tk()
+ventana.title("Cálculo de Hipotenusa")
+ventana.geometry("300x230")
+ventana.resizable(False, False)
+
+# Etiquetas y cajas de texto
+tk.Label(ventana, text="Ingrese Cateto A:").pack(pady=5)
+entry_a = tk.Entry(ventana)
+entry_a.pack()
+
+tk.Label(ventana, text="Ingrese Cateto B:").pack(pady=5)
+entry_b = tk.Entry(ventana)
+entry_b.pack()
+
+# Botón calcular
+tk.Button(ventana, text="Calcular Hipotenusa", command=calcular).pack(pady=15)
+
+# Resultado
+label_resultado = tk.Label(ventana, text="Hipotenusa: ---", font=("Arial", 12, "bold"))
+label_resultado.pack(pady=10)
+
+# Ejecutar ventana
+ventana.mainloop()
+<img width="377" height="322" alt="image" src="https://github.com/user-attachments/assets/958048ba-8d71-4bc2-a8bd-d82e2ee90f68" />
+
+EJEMPLO
+-def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+
+def main():
+    try:
+        n = int(input("Ingrese cuántos términos desea mostrar: "))
+        if n <= 0:
+            raise ValueError("El número debe ser positivo")
+        fibonacci(n)
+
+    except ValueError as ve:
+        print("Error:", ve)
+
+if __name__ == "__main__":
+    main()
+
+EJEMPLO TKINTER
+-import tkinter as tk
+from tkinter import messagebox
+
+def generar_fibonacci(n):
+    a, b = 0, 1
+    resultado = ""
+    for _ in range(n):
+        resultado += str(a) + " "
+        a, b = b, a + b
+    return resultado
+
+def dibujar_grafico(n):
+    canvas.delete("all")  # limpiar
+
+    a, b = 0, 1
+    x = 20   # posición inicial
+
+    # calcular valores para la escala
+    max_val = 0
+    temp_a, temp_b = 0, 1
+    for _ in range(n):
+        if temp_a > max_val:
+            max_val = temp_a
+        temp_a, temp_b = temp_b, temp_a + temp_b
+
+    if max_val == 0:
+        max_val = 1
+
+    for _ in range(n):
+        altura = int((a / max_val) * 180)  # escala al canvas
+        canvas.create_rectangle(x, 200 - altura, x + 20, 200, fill="skyblue")
+        canvas.create_text(x + 10, 200 - altura - 10, text=str(a), font=("Arial", 8))
+        a, b = b, a + b
+        x += 30
+
+def calcular():
+    try:
+        n = int(entry_n.get())
+        if n <= 0:
+            raise ValueError("Debe ingresar un número positivo.")
+
+        serie = generar_fibonacci(n)
+        label_resultado.config(text=f"Serie: {serie}")
+
+        dibujar_grafico(n)
+
+    except ValueError as ve:
+        messagebox.showerror("Error", str(ve))
+
+# Ventana principal
+ventana = tk.Tk()
+ventana.title("Serie Fibonacci Gráfica")
+ventana.geometry("600x400")
+ventana.resizable(False, False)
+
+# Entrada
+tk.Label(ventana, text="Cantidad de términos:", font=("Arial", 11)).pack(pady=5)
+entry_n = tk.Entry(ventana, width=10)
+entry_n.pack()
+
+tk.Button(ventana, text="Generar", command=calcular).pack(pady=10)
+
+# Resultado
+label_resultado = tk.Label(ventana, text="Serie: ---", font=("Arial", 10))
+label_resultado.pack(pady=5)
+
+# Canvas del gráfico
+canvas = tk.Canvas(ventana, width=560, height=220, bg="white")
+canvas.pack(pady=10)
+
+ventana.mainloop()
+<img width="747" height="537" alt="image" src="https://github.com/user-attachments/assets/3c21353c-8e98-413b-a4ac-8a2eaca79951" />
+
+
+
+
+
+**PROGRAMACION GENERICA**
+
+  La programacion generica es un paradigma que permite escribir codigo flexible y reutilizable mediante el uso de t8ipos genericos su objetivo esz disenar
+  algoritmos y estructura de datos qu e puedan operar con distintos tipos de datos sin necesidad de reescribir el codigo para cada tipo especifico en python 
+  este enfoque se implementa principalmente a traves del uso de tipos genericos en el moldo typing talez como list,dic,set,tuple y tyvar los cuales permiten       definir clases y funciones que trabajan de forma segura con diferentes tipos de datos.
+
+  EJEMPLO
+  -
+from typing import TypeVar
+
+T = TypeVar('T', int, float)
+
+def sumar(a: T, b: T) -> T:
+    return a + b
+
+print(sumar(5, 10))
+print(sumar(3.5, 2.5))
+
+EJEMPLO
+-
+from typing import TypeVar
+import math
+
+T = TypeVar('T', int, float)
+
+def calcular_hipotenusa(cateto_a: T, cateto_b: T) -> T:
+    return math.sqrt(cateto_a**2 + cateto_b**2)
+
+print("Hipotenusa =", calcular_hipotenusa(3, 4))
+print("Hipotenusa =", calcular_hipotenusa(5.5, 2.2))
+
 
