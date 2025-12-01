@@ -1181,4 +1181,122 @@ def calcular_hipotenusa(cateto_a: T, cateto_b: T) -> T:
 print("Hipotenusa =", calcular_hipotenusa(3, 4))
 print("Hipotenusa =", calcular_hipotenusa(5.5, 2.2))
 
+EJEMPLO
+- from typing import TypeVar, Generic
 
+T = TypeVar('T', int, float)
+
+class CalculadoraFactorial(Generic[T]):
+
+    def __init__(self, numero: T):
+        self.numero = numero
+
+    def calcular_factorial(self) -> int:
+        n = int(self.numero)
+
+        if n < 0:
+            raise ValueError("El factorial no está definido para números negativos.")
+
+        resultado = 1
+        for i in range(1, n + 1):
+            resultado *= i
+
+        return resultado
+
+
+def main():
+    try:
+        n = float(input("Ingrese un número: "))
+
+        cal = CalculadoraFactorial(n)
+        print(f"El factorial de {n} es: {cal.calcular_factorial()}")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    main()
+
+EJEMPLO TKINTER
+- import tkinter as tk
+from tkinter import messagebox
+from typing import TypeVar, Generic
+
+T = TypeVar('T', int, float)
+
+class CalculadoraFactorial(Generic[T]):
+
+    def __init__(self, numero: T):
+        self.numero = numero
+
+    def calcular_factorial(self) -> int:
+        n = int(self.numero)
+
+        if n < 0:
+            raise ValueError("El factorial no está definido para números negativos.")
+
+        resultado = 1
+        for i in range(1, n + 1):
+            resultado *= i
+
+        return resultado
+
+
+def calcular():
+    try:
+        n = float(entry_numero.get())
+        calc = CalculadoraFactorial(n)
+        resultado = calc.calcular_factorial()
+
+        label_resultado.config(text=f"Factorial: {resultado}")
+
+        dibujar_grafico(int(n))
+
+    except ValueError as e:
+        messagebox.showerror("Error", str(e))
+
+
+def dibujar_grafico(n):
+    canvas.delete("all")
+
+    if n < 1:
+        return
+
+    # Calcular valores del factorial hasta n para el gráfico
+    valores = []
+    fact = 1
+    for i in range(1, n + 1):
+        fact *= i
+        valores.append(fact)
+
+    max_val = max(valores)
+    x = 20
+
+    # Dibujar barras
+    for i, val in enumerate(valores, start=1):
+        altura = int((val / max_val) * 180)
+
+        canvas.create_rectangle(x, 200 - altura, x + 25, 200, fill="lightblue")
+        canvas.create_text(x + 12, 205, text=str(i), font=("Arial", 9))
+        x += 35
+
+ventana = tk.Tk()
+ventana.title("Calculadora de Factorial")
+ventana.geometry("500x400")
+ventana.resizable(False, False)
+
+tk.Label(ventana, text="Ingrese un número:", font=("Arial", 11)).pack(pady=5)
+entry_numero = tk.Entry(ventana, width=10)
+entry_numero.pack()
+
+tk.Button(ventana, text="Calcular Factorial", command=calcular).pack(pady=10)
+
+label_resultado = tk.Label(ventana, text="Factorial: ---", font=("Arial", 12, "bold"))
+label_resultado.pack(pady=10)
+
+canvas = tk.Canvas(ventana, width=460, height=230, bg="white")
+canvas.pack(pady=10)
+
+ventana.mainloop()
+<img width="626" height="540" alt="image" src="https://github.com/user-attachments/assets/ccda23b2-471e-435b-99fc-987694f83eb7" />
