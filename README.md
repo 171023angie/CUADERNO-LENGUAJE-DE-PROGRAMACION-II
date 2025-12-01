@@ -1,8 +1,13 @@
+# 🧠 Cuaderno Virtual – Lenguaje de Programación
 
+**Nombre:** Gleny Angélica Condori Mamani  
+**Facultad:** Ingeniería Estadística e Informática  
+**Universidad:** Universidad Nacional del Altiplano – Puno  
+**Curso:** Lenguaje de Programación (Python)  
+**Docente:** Leonel  
 
-=================================================================
-    ## UNIDAD II ##
-=================================================================
+    **## UNIDAD II ##**
+
 # 🧩 TEMA: Herencia en Programación Orientada a Objetos (P.O.O)
 
 ## 📘 Herencia
