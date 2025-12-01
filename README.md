@@ -1182,28 +1182,20 @@ print("Hipotenusa =", calcular_hipotenusa(3, 4))
 print("Hipotenusa =", calcular_hipotenusa(5.5, 2.2))
 
 EJEMPLO
-- from typing import TypeVar, Generic
-
+-
+from typing import TypeVar, Generic
 T = TypeVar('T', int, float)
-
 class CalculadoraFactorial(Generic[T]):
-
     def __init__(self, numero: T):
         self.numero = numero
-
     def calcular_factorial(self) -> int:
         n = int(self.numero)
-
         if n < 0:
             raise ValueError("El factorial no está definido para números negativos.")
-
         resultado = 1
         for i in range(1, n + 1):
             resultado *= i
-
         return resultado
-
-
 def main():
     try:
         n = float(input("Ingrese un número: "))
@@ -1217,86 +1209,144 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+    
 EJEMPLO TKINTER
-- import tkinter as tk
+-
+import tkinter as tk
 from tkinter import messagebox
 from typing import TypeVar, Generic
-
 T = TypeVar('T', int, float)
-
 class CalculadoraFactorial(Generic[T]):
-
     def __init__(self, numero: T):
         self.numero = numero
-
     def calcular_factorial(self) -> int:
         n = int(self.numero)
-
         if n < 0:
             raise ValueError("El factorial no está definido para números negativos.")
-
         resultado = 1
         for i in range(1, n + 1):
             resultado *= i
-
         return resultado
-
 
 def calcular():
     try:
         n = float(entry_numero.get())
         calc = CalculadoraFactorial(n)
         resultado = calc.calcular_factorial()
-
         label_resultado.config(text=f"Factorial: {resultado}")
-
         dibujar_grafico(int(n))
-
     except ValueError as e:
         messagebox.showerror("Error", str(e))
-
-
 def dibujar_grafico(n):
     canvas.delete("all")
-
     if n < 1:
         return
-
     # Calcular valores del factorial hasta n para el gráfico
     valores = []
     fact = 1
     for i in range(1, n + 1):
         fact *= i
         valores.append(fact)
-
     max_val = max(valores)
     x = 20
-
     # Dibujar barras
     for i, val in enumerate(valores, start=1):
         altura = int((val / max_val) * 180)
-
         canvas.create_rectangle(x, 200 - altura, x + 25, 200, fill="lightblue")
         canvas.create_text(x + 12, 205, text=str(i), font=("Arial", 9))
         x += 35
-
 ventana = tk.Tk()
 ventana.title("Calculadora de Factorial")
 ventana.geometry("500x400")
 ventana.resizable(False, False)
-
 tk.Label(ventana, text="Ingrese un número:", font=("Arial", 11)).pack(pady=5)
 entry_numero = tk.Entry(ventana, width=10)
 entry_numero.pack()
-
 tk.Button(ventana, text="Calcular Factorial", command=calcular).pack(pady=10)
-
 label_resultado = tk.Label(ventana, text="Factorial: ---", font=("Arial", 12, "bold"))
 label_resultado.pack(pady=10)
-
 canvas = tk.Canvas(ventana, width=460, height=230, bg="white")
 canvas.pack(pady=10)
-
 ventana.mainloop()
 <img width="626" height="540" alt="image" src="https://github.com/user-attachments/assets/ccda23b2-471e-435b-99fc-987694f83eb7" />
+
+EJEMPLO
+-
+from typing import TypeVar, Generic
+import math
+T = TypeVar('T', int, float)
+class TrianguloRectangulo(Generic[T]):
+    def __init__(self,cateto_a: T, cateto_b: T):
+        self.a = cateto_a
+        self.b = cateto_b
+    def hipotenusa(self) -> float:
+        return math.sqrt(self.a*2 + self.b*2)
+    def area(self) ->float:
+        return (self.a * self.b) / 2
+    def perimetro(self) ->float:
+        return self.a + self.b + self.hipotenusa()
+def main():
+    try:
+        a = float(input("Ingrese cateto A: "))
+        b = float(input("Ingrese cateto B: "))
+        tri = TrianguloRectangulo(a,b)
+        h= tri.hipotenusa()
+        area=tri.area()
+        perimetro = tri.perimetro()
+        print(f"A = {a}")
+        print(f"B = {b}")
+        print(f"H = {h:.2f}")
+        print(f"ÁREA = {area:.2f}")
+        print(f"PERÍMETRO = {perimetro:.2f}")
+    except ValueError as e:
+        print(f"Error: {e}")
+if __name__ == "__main__":
+    main()
+from typing import TypeVar, Generic
+import math
+
+T = TypeVar('T', int, float)
+
+class TrianguloRectangulo(Generic[T]):
+
+    def __init__(self, cateto_a: T, cateto_b: T):
+        self.a = float(cateto_a)
+        self.b = float(cateto_b)
+
+    def hipotenusa(self) -> float:
+        # Fórmula correcta: √(a² + b²)
+        return math.sqrt(self.a**2 + self.b**2)
+
+    def area(self) -> float:
+        return (self.a * self.b) / 2
+
+    def perimetro(self) -> float:
+        return self.a + self.b + self.hipotenusa()
+
+
+def main():
+    try:
+        a = float(input("Ingrese cateto A: "))
+        b = float(input("Ingrese cateto B: "))
+
+        if a <= 0 or b <= 0:
+            raise ValueError("Los catetos deben ser positivos.")
+
+        tri = TrianguloRectangulo(a, b)
+
+        h = tri.hipotenusa()
+        area = tri.area()
+        perimetro = tri.perimetro()
+
+        print(f"A = {a}")
+        print(f"B = {b}")
+        print(f"H = {h:.2f}")          # ← Hipotenusa correcta
+        print(f"ÁREA = {area:.2f}")
+        print(f"PERÍMETRO = {perimetro:.2f}")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    main()
